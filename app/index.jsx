@@ -41,7 +41,7 @@ export default function App() {
           <CustomButton
             title="Continue With Email"
             handlePress={() => {
-              router.push("/sign-in");
+              router.push("/sign-up");
             }}
             containerStyles="bg-secondary rounded-lg py-3  w-5/6"
             textStyles="text-center font-extrabold text-base"

@@ -1,4 +1,5 @@
 import {
+  Alert,
   Image,
   SafeAreaView,
   ScrollView,
@@ -12,15 +13,32 @@ import Input from "../../components/Input";
 import CustomButton from "../../components/CustomButton";
 import { handleChange } from "../../utils/handleChange";
 import { router, Link } from "expo-router";
+import { auth } from "../../config/axios";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const onSubmit = async () => {
+    if (!formData.username || !formData.email || !formData.password) {
+      Alert.alert("Error", "Please fill in all the fields.");
+    }
+    setIsSubmitting(true);
+    try {
+      console.log(formData);
+      // const response = auth.post("/register", formData);
+      // console.log(response.data);
+    } catch (error) {
+      Alert.alert("Error", error.message);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <SafeAreaView className="bg-primary h-full">
@@ -76,7 +94,7 @@ const SignUp = () => {
               title="Sign up"
               containerStyles="bg-secondary rounded-lg py-3 w-full"
               textStyles="text-center font-extrabold text-base capitalize"
-              handlePress={() => console.log(formData)}
+              handlePress={() => onSubmit()}
             />
             <View className="flex-row items-center gap-1 pt-4">
               <Text className="text-[#CDCDE0] text-base">

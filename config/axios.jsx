@@ -1,11 +1,10 @@
 import axios from "axios";
 import { AUTH_URL } from "./url";
 
-export const auth = (token) => {
-  return axios.create({
-    baseURL: AUTH_URL,
-    headers: {
-      Authorization: `Bearer: ${token}`,
-    },
-  });
-};
+export const auth = axios.create({
+  baseURL: AUTH_URL,
+  headers: {
+    Accept: "application/json",
+    //   Authorization: `Bearer: ${token}`,
+  },
+});

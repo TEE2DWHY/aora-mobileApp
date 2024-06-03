@@ -11,7 +11,7 @@ import { images, icons } from "../../constants";
 import Input from "../../components/Input";
 import CustomButton from "../../components/CustomButton";
 import { handleChange } from "../../utils/handleChange";
-import { router, Link } from "expo-router";
+import { Link } from "expo-router";
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -63,7 +63,7 @@ const SignIn = () => {
               />
             </TouchableOpacity>
           </View>
-          <Text className="text-[#CDCDE0] text-right mt-0 mb-4 font-pextrabold">
+          <Text className="text-[#CDCDE0] text-right mt-0 mb-4 font-pmedium">
             Forgot Password
           </Text>
           <View className="flex items-center justify-center mt-2">

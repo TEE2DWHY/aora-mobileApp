@@ -1,4 +1,5 @@
 import {
+  Alert,
   Image,
   SafeAreaView,
   ScrollView,
@@ -11,16 +12,34 @@ import { images, icons } from "../../constants";
 import Input from "../../components/Input";
 import CustomButton from "../../components/CustomButton";
 import { handleChange } from "../../utils/handleChange";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
+import { auth } from "../../config/axios";
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
   });
+
+  const onSubmit = async () => {
+    if (!formData.email || !formData.password) {
+      return Alert.alert("Error", "Please fill in all the fields.");
+    }
+    setIsSubmitting(true);
+    try {
+      console.log(formData);
+      router.replace("/home");
+      // const response = auth.post("/login", formData);
+      // console.log(response.data);
+    } catch (error) {
+      Alert.alert("Error", error.message);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <SafeAreaView className="bg-primary h-full">
@@ -71,7 +90,7 @@ const SignIn = () => {
               title="Log in"
               containerStyles="bg-secondary rounded-lg py-3 w-full"
               textStyles="text-center font-extrabold text-base capitalize"
-              handlePress={() => console.log(formData)}
+              handlePress={() => onSubmit()}
             />
             <View className="flex-row items-center gap-1 pt-4">
               <Text className="text-[#CDCDE0] text-base">

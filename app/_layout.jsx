@@ -4,6 +4,7 @@ import { SplashScreen, Stack } from "expo-router"; // we can either use stack or
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useFonts } from "expo-font";
+import GlobalProvider from "../context/GlobalProvider";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -34,13 +35,14 @@ const RootLayout = () => {
         <Slot /> // using the slot approach something similar to {children} in react
         <Footer />
       </View> */}
-
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        {/* <Stack.Screen name="/search/[query]" options={{ headerShown: false }} /> */}
-      </Stack>
+      <GlobalProvider>
+        <Stack>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          {/* <Stack.Screen name="/search/[query]" options={{ headerShown: false }} /> */}
+        </Stack>
+      </GlobalProvider>
     </>
   );
 };

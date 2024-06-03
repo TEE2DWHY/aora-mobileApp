@@ -26,11 +26,12 @@ const SignUp = () => {
 
   const onSubmit = async () => {
     if (!formData.username || !formData.email || !formData.password) {
-      Alert.alert("Error", "Please fill in all the fields.");
+      return Alert.alert("Error", "Please fill in all the fields.");
     }
     setIsSubmitting(true);
     try {
       console.log(formData);
+      router.replace("/sign-in");
       // const response = auth.post("/register", formData);
       // console.log(response.data);
     } catch (error) {

@@ -1,30 +1,25 @@
-import { Text, TextInput, View } from "react-native";
+import { Text, TextInput, View, TouchableOpacity, Image } from "react-native";
 import React from "react";
+import { icons } from "../constants";
 
-const SearchInput = ({
-  label,
-  placeholder,
-  value,
-  type,
-  onChange,
-  keyboardType,
-}) => {
+const SearchInput = ({ placeholder, value, type, onChange, keyboardType }) => {
   return (
-    <View className="flex gap-1 mb-6">
-      <Text className="text-[#CDCDE0] capitalize text-[16px] pb-1">
-        {label}
-      </Text>
+    <View className="border-2 border-black-200 w-full h-16 my-4 px-4 bg-black-100 rounded-xl focus:border-secondary items-center flex-row space-x-4">
       <TextInput
         placeholder={placeholder}
-        className={`p-4 bg-[#1E1E2D] rounded-xl text-white font-pbold w-full ${
-          value ? "border-yellow-500 border-2" : "border-transparent border-0"
-        }`}
-        secureTextEntry={type === "password"}
+        className="text-base mt-0.5 text-white flex-1 font-pregular"
         placeholderTextColor="#7B7B8B"
         value={value}
         onChangeText={onChange}
         keyboardType={keyboardType}
       />
+      <View>
+        <TouchableOpacity
+        // onPress={() => setShowPassword(!showPassword)}
+        >
+          <Image source={icons.search} className="w-5 h-5" />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };

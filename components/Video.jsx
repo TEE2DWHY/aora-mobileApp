@@ -4,7 +4,7 @@ import { Image, ScrollView, Text, View } from "react-native";
 const Video = ({ avatar, header, subHeader, dropdown, content }) => {
   return (
     <ScrollView className="w-full mt-5">
-      <View className="flex flex-row items-center justify-between mt-2 mb-0">
+      <View className="flex flex-row items-center justify-between">
         <Image source={avatar} className="w-12 h-12 mr-2" />
         <View className="flex-1">
           <Text
@@ -22,7 +22,11 @@ const Video = ({ avatar, header, subHeader, dropdown, content }) => {
           className="h-[20px] w-[20px] ml-8"
         />
       </View>
-      <Image source={content} className="w-full h-64" resizeMode="contain" />
+      <Image
+        source={content}
+        className="w-full h-64 mt-[-10px]"
+        resizeMode="contain"
+      />
     </ScrollView>
   );
 };

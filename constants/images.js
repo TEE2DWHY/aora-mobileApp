@@ -8,6 +8,7 @@ import empty from "../assets/images/empty.png";
 import avatar from "../assets/images/avatar.png";
 import videoOne from "../assets/images/video-1.png";
 import videoTwo from "../assets/images/video-2.png";
+import videoFive from "../assets/images/video-5.png";
 
 export default {
   profile,
@@ -20,4 +21,5 @@ export default {
   avatar,
   videoOne,
   videoTwo,
+  videoFive,
 };

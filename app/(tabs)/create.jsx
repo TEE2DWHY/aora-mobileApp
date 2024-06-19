@@ -27,7 +27,7 @@ const Create = () => {
           Upload Video
         </Text>
         <View className="justify-center items-center bg-[#1E1E2D] h-[120px] rounded-2xl mb-6">
-          <View className="border-dotted border-2 border-secondary-100 p-2 rounded-xl">
+          <View className="border-dotted border-2 border-secondary-100 py-4 px-2 rounded-xl">
             <Image source={icons.upload} className="w-7 h-7 " />
           </View>
         </View>

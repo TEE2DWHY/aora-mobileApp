@@ -9,6 +9,9 @@ import avatar from "../assets/images/avatar.png";
 import videoOne from "../assets/images/video-1.png";
 import videoTwo from "../assets/images/video-2.png";
 import videoFive from "../assets/images/video-5.png";
+import johnson from "../assets/images/johnson.png";
+import camera from "../assets/images/camera.png";
+import cartoon from "../assets/images/cartoon.png";
 
 export default {
   profile,
@@ -22,4 +25,7 @@ export default {
   videoOne,
   videoTwo,
   videoFive,
+  johnson,
+  camera,
+  cartoon,
 };

@@ -1,23 +1,36 @@
-import { FlatList, Image, Text, View } from "react-native";
+import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import image from "../../constants/images";
-import Video from "../../components/Video";
 import icons from "../../constants/icons";
 import images from "../../constants/images";
+import VideoCard from "../../components/VideoCard";
+import { useGlobalContext } from "../../context/GlobalProvider";
+import { router } from "expo-router";
 
 const Profile = () => {
+  const { setIsLoggedIn } = useGlobalContext();
   return (
     <SafeAreaView className="h-full bg-primary">
       <FlatList
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
         ListHeaderComponent={() => (
           <>
             <View className="px-6">
-              <Image
-                source={icons.logout}
-                resizeMode="contain"
-                className="absolute right-9 mt-8 w-6 h-6"
-              />
+              <TouchableOpacity
+                onPress={() => {
+                  setIsLoggedIn(false);
+                  router.push("/sign-in");
+                }}
+              >
+                <Image
+                  source={icons.logout}
+                  resizeMode="contain"
+                  className="absolute right-9 mt-8 w-6 h-6"
+                />
+              </TouchableOpacity>
+
               <View className="flex items-center mt-20 mb-4">
                 <Image source={image.avatar} />
                 <Text className="text-white font-semibold mt-[10px] text-2xl">
@@ -38,7 +51,7 @@ const Profile = () => {
                   </View>
                 </View>
               </View>
-              <Video
+              <VideoCard
                 avatar={image.avatar}
                 header={
                   "Businessman Work with Laptop Computer in Office Manager Solving Problem"
@@ -47,7 +60,7 @@ const Profile = () => {
                 dropdown={icons.menu}
                 content={images.videoOne}
               />
-              <Video
+              <VideoCard
                 avatar={image.avatar}
                 header={"Woman walks down a Tokyo..."}
                 subHeader={"jsmastery"}

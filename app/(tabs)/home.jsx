@@ -4,17 +4,16 @@ import {
   View,
   Image,
   FlatList,
-  TouchableOpacity,
   RefreshControl,
 } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import image from "../../constants/images";
 import SearchInput from "../../components/SearchInput";
-import { icons } from "../../constants";
+import { icons, images } from "../../constants";
 import Trending from "../../components/Trending";
 import EmptyState from "../../components/EmptyState";
-
+import VideoCard from "../../components/VideoCard";
 const Home = () => {
   const [refreshing, setRefreshing] = useState(false);
 
@@ -29,9 +28,11 @@ const Home = () => {
       <FlatList // FlatLists support both horizontal and vertical scrolls unlike scroll views (scroll view does not support adding a horizontal and vertical scroll view)
         data={[{ id: 1 }, { id: 2 }, { id: 3 }]}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <Text className="text-2xl text-white">{item.id} </Text>
-        )}
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+        // renderItem={({ item }) => (
+        //   <Text className="text-2xl text-white">{item.id} </Text>
+        // )}
         ListHeaderComponent={() => (
           <>
             <View className="flex-row justify-between items-center border-red-700 w-[100%] mt-16">
@@ -56,6 +57,22 @@ const Home = () => {
               Trending Video
             </Text>
             <Trending posts={[{ id: 1 }, { id: 2 }, { id: 3 }]} />
+            <VideoCard
+              avatar={image.avatar}
+              header={
+                "Businessman Work with Laptop Computer in Office Manager Solving Problem"
+              }
+              subHeader={"jsmastery"}
+              dropdown={icons.menu}
+              content={images.videoOne}
+            />
+            <VideoCard
+              avatar={image.avatar}
+              header={"Woman walks down a Tokyo..."}
+              subHeader={"jsmastery"}
+              dropdown={icons.menu}
+              content={images.videoFive}
+            />
           </>
         )}
         ListEmptyComponent={() => (

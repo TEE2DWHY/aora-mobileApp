@@ -1,7 +1,7 @@
 import React from "react";
 import { Image, ScrollView, Text, View } from "react-native";
 
-const Video = ({ avatar, header, subHeader, dropdown, content }) => {
+const VideoCard = ({ avatar, header, subHeader, dropdown, content }) => {
   return (
     <ScrollView className="w-full mt-5">
       <View className="flex flex-row items-center justify-between">
@@ -31,4 +31,4 @@ const Video = ({ avatar, header, subHeader, dropdown, content }) => {
   );
 };
 
-export default Video;
+export default VideoCard;

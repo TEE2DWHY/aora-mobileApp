@@ -10,13 +10,15 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import icons from "../../constants/icons";
 import { images } from "../../constants";
-import Video from "../../components/Video";
+import VideoCard from "../../components/VideoCard";
 
 const Bookmark = () => {
   return (
     <>
       <SafeAreaView className="h-full bg-primary px-6">
         <FlatList
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
           ListHeaderComponent={() => (
             <View>
               <Text className="text-white text-2xl font-psemibold mt-12">
@@ -34,7 +36,7 @@ const Bookmark = () => {
                   resizeMode="contain"
                 />
               </View>
-              <Video
+              <VideoCard
                 avatar={images.johnson}
                 header={
                   "The camera follows behind a white vintage SUV with a black roof rack as it speeds up a steep dirt road surrounded by pine trees on a steep mountain slope, "
@@ -43,7 +45,7 @@ const Bookmark = () => {
                 dropdown={icons.menu}
                 content={images.camera}
               />
-              <Video
+              <VideoCard
                 avatar={images.johnson}
                 header={"Close up on cartoon character boy on social media, "}
                 subHeader={"johnson"}

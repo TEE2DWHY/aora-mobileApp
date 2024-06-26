@@ -15,7 +15,11 @@ import CustomButton from "../../components/CustomButton";
 const Create = () => {
   return (
     <SafeAreaView className="h-full w-full bg-primary px-4">
-      <ScrollView className="flex mt-12">
+      <ScrollView
+        className="flex mt-12"
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+      >
         <Text className="font-pbold text-2xl text-white mb-6">
           Upload Video
         </Text>

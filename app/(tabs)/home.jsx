@@ -56,7 +56,7 @@ const Home = () => {
             <Text className="text-[#CDCDE0] text-base mt-4">
               Trending Video
             </Text>
-            <Trending posts={[{ id: 1 }, { id: 2 }, { id: 3 }]} />
+            <Trending />
             <VideoCard
               avatar={image.avatar}
               header={

@@ -1,11 +1,4 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  FlatList,
-  RefreshControl,
-} from "react-native";
+import { Text, View, Image, FlatList, RefreshControl } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import image from "../../constants/images";
@@ -92,5 +85,3 @@ const Home = () => {
 };
 
 export default Home;
-
-const styles = StyleSheet.create({});

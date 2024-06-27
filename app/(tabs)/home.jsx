@@ -21,6 +21,7 @@ const Home = () => {
     setRefreshing(true);
     // recalls video if new videos appeared
     setRefreshing(false);
+    console.log("app refreshing is successful.");
   };
 
   return (
@@ -41,7 +42,7 @@ const Home = () => {
                   welcome back
                 </Text>
                 <Text className="capitalize text-white text-xl font-pbold ">
-                  jsmastery
+                  Tee2dWhy
                 </Text>
               </View>
               <View>
@@ -54,7 +55,7 @@ const Home = () => {
             </View>
             <SearchInput placeholder="Search for a video topic" />
             <Text className="text-[#CDCDE0] text-base mt-4">
-              Trending Video
+              Trending Videos
             </Text>
             <Trending />
             <VideoCard

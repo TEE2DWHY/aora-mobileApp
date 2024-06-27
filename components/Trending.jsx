@@ -1,23 +1,22 @@
 import {
   FlatList,
   ImageBackground,
-  StyleSheet,
   Text,
   Image,
   TouchableOpacity,
-  View,
 } from "react-native";
 import React from "react";
 import * as Animatable from "react-native-animatable";
 import { useState } from "react";
-import { icons, images } from "../constants";
+import { icons } from "../constants";
+import { Video, ResizeMode } from "expo-av";
 
 const zoomIn = {
   0: {
     scale: 0.9,
   },
   1: {
-    scale: 1.2,
+    scale: 1,
   },
 };
 
@@ -33,23 +32,68 @@ const zoomOut = {
 const dummyData = [
   {
     id: 1,
-    thumbnail:
-      "https://www.befunky.com/images/prismic/82e0e255-17f9-41e0-85f1-210163b0ea34_hero-blur-image-3.jpg?auto=avif,webp&format=jpg&width=896",
+    description:
+      "Big Buck Bunny tells the story of a giant rabbit with a heart bigger than himself. When one sunny day three rodents rudely harass him, something snaps... and the rabbit ain't no bunny anymore! In the typical cartoon tradition he prepares the nasty rodents a comical revenge.\n\nLicensed under the Creative Commons Attribution license\nhttp://www.bigbuckbunny.org",
+    sources:
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+
+    subtitle: "By Blender Foundation",
+    thumb:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Big_buck_bunny_poster_big.jpg/424px-Big_buck_bunny_poster_big.jpg",
+    title: "Big Buck Bunny",
   },
   {
     id: 2,
-    thumbnail:
-      "https://static.gettyimages.com/display-sets/creative-landing/images/GettyImages-1448734171.jpg",
+    description: "The first Blender Open Movie from 2006",
+    sources:
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+    subtitle: "By Blender Foundation",
+    thumb:
+      "https://upload.wikimedia.org/wikipedia/commons/d/d4/Elephants_Dream_-_Emo_and_Proog.jpg",
+    title: "Elephant Dream",
   },
   {
     id: 3,
-    thumbnail:
-      "https://img.freepik.com/free-photo/abstract-autumn-beauty-multi-colored-leaf-vein-pattern-generated-by-ai_188544-9871.jpg",
+    description:
+      "HBO GO now works with Chromecast -- the easiest way to enjoy online video on your TV. For when you want to settle into your Iron Throne to watch the latest episodes. For $35.\nLearn how to use Chromecast with HBO GO and more at google.com/chromecast.",
+    sources:
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+    subtitle: "By Google",
+    thumb: "https://www.janmorgenstern.com/assets/2010/09/sintel_poster.jpg",
+    title: "For Bigger Blazes",
   },
   {
     id: 4,
-    thumbnail:
-      "https://imgv3.fotor.com/images/slider-image/A-clear-close-up-photo-of-a-woman.jpg",
+    description:
+      "Introducing Chromecast. The easiest way to enjoy online video and music on your TV—for when you want to settle into your Iron Throne to watch the latest episodes. For $35.\nLearn how to use Chromecast with HBO GO and more at google.com/chromecast.",
+    sources:
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+    subtitle: "By Google",
+    thumb:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Big_buck_bunny_poster_big.jpg/424px-Big_buck_bunny_poster_big.jpg",
+    title: "For Bigger Escape",
+  },
+  {
+    id: 5,
+    description:
+      "Introducing Chromecast. The easiest way to enjoy online video and music on your TV. For $35.  Find out more at google.com/chromecast.",
+    sources:
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+    subtitle: "By Google",
+    thumb:
+      "https://images1.vinted.net/t/03_01083_cfyMWr2jFq8UVkk7HtKzGu2f/f800/1638372786.jpeg?s=24cf37c1a04c12f286e47d00ab8e51e1b8391ae0",
+    title: "For Bigger Fun",
+  },
+  {
+    id: 6,
+    description:
+      "Introducing Chromecast. The easiest way to enjoy online video and music on your TV—for the times that call for bigger joyrides. For $35. Learn how to use Chromecast with YouTube and more at google.com/chromecast.",
+    sources:
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+    subtitle: "By Google",
+    thumb:
+      "https://resizing.flixster.com/AOVscsV7du8kSRJdohU10cOKKmQ=/206x305/v2/https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p186109_b_v8_aa.jpg",
+    title: "For Bigger Joyrides",
   },
 ];
 
@@ -63,7 +107,18 @@ const TrendingItem = ({ activeItem, item }) => {
       duration={500}
     >
       {play ? (
-        <Text>Playing...</Text>
+        <Video
+          source={{ uri: item.sources }}
+          className="w-52 h-72 rounded-[35px] mt-3 bg-white/10"
+          resizeMode={ResizeMode.CONTAIN}
+          useNativeControls
+          shouldPlay // allows the video to play
+          onPlaybackStatusUpdate={(status) => {
+            if (status.didJustFinish) {
+              setPlay(false);
+            }
+          }}
+        />
       ) : (
         <TouchableOpacity
           className="relative justify-center items-center"
@@ -71,8 +126,7 @@ const TrendingItem = ({ activeItem, item }) => {
           onPress={() => setPlay(true)}
         >
           <ImageBackground
-            // source={{uri: item.thumbnail}}
-            source={{ uri: item.thumbnail }}
+            source={{ uri: item.thumb }}
             className="w-52 h-72 rounded-[35px] my-5 overflow-hidden shadow-lg shadow-black/40"
             resizeMode="cover"
           />
@@ -87,7 +141,7 @@ const TrendingItem = ({ activeItem, item }) => {
   );
 };
 
-const Trending = ({ posts }) => {
+const Trending = () => {
   const [activeItem, setActiveItem] = useState(dummyData[0]);
   const viewableItemsChanged = ({ viewableItems }) => {
     if (viewableItems.length > 0) {
@@ -101,7 +155,6 @@ const Trending = ({ posts }) => {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <TrendingItem activeItem={activeItem} item={item} />
-          // <Text className="text-white text-3xl ">{item.id}</Text>
         )}
         onViewableItemsChanged={viewableItemsChanged}
         viewabilityConfig={{

@@ -34,7 +34,7 @@ const Profile = () => {
               <View className="flex items-center mt-20 mb-4">
                 <Image source={image.avatar} />
                 <Text className="text-white font-semibold mt-[10px] text-2xl">
-                  jsmastery
+                  Tee2dWhy
                 </Text>
                 <View className="flex-row mt-[6px]">
                   <View className="flex mt-2">

@@ -1,11 +1,4 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  FlatList,
-  RefreshControl,
-} from "react-native";
+import { Text, View, Image, FlatList, RefreshControl } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { icons, images } from "../../constants";
@@ -13,11 +6,26 @@ import SearchInput from "../../components/SearchInput";
 import EmptyState from "../../components/EmptyState";
 import VideoCard from "../../components/VideoCard";
 import image from "../../constants/images";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Search = () => {
   const { query } = useLocalSearchParams();
   const [refreshing, setRefreshing] = useState(false);
+  const [filteredData, setFilteredData] = useState([]);
+
+  useEffect(() => {
+    // Filter data based on the current search query
+    if (query.trim() === "") {
+      setFilteredData(data); // If no query, show all data
+    } else {
+      const filtered = data.filter(
+        (item) =>
+          item.header.toLowerCase().includes(query.toLowerCase()) ||
+          item.subHeader.toLowerCase().includes(query.toLowerCase())
+      );
+      setFilteredData(filtered);
+    }
+  }, [query]);
 
   const data = [
     {
@@ -44,7 +52,7 @@ const Search = () => {
   return (
     <SafeAreaView className="h-[100%] w-[100%] bg-primary px-6">
       <FlatList // FlatLists support both horizontal and vertical scrolls unlike scroll views (scroll view does not support adding a horizontal and vertical scroll view)
-        data={data.length === 0 ? [] : data}
+        data={filteredData.length === 0 ? [] : filteredData}
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
@@ -86,5 +94,3 @@ const Search = () => {
 };
 
 export default Search;
-
-const styles = StyleSheet.create({});

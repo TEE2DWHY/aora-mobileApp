@@ -1,18 +1,17 @@
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-} from "react-native";
-import React from "react";
+import { ScrollView, Text, View, Image, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Input from "../../components/Input";
 import { icons } from "../../constants";
 import CustomButton from "../../components/CustomButton";
 
 const Create = () => {
+  const [form, setForm] = useState({
+    title: "",
+    video: "",
+    thumbnail: "",
+    prompt: "",
+  });
   return (
     <SafeAreaView className="h-full w-full bg-primary px-4">
       <ScrollView
@@ -57,5 +56,3 @@ const Create = () => {
 };
 
 export default Create;
-
-const styles = StyleSheet.create({});

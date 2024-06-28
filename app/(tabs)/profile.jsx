@@ -21,7 +21,7 @@ const Profile = () => {
               <TouchableOpacity
                 onPress={() => {
                   setIsLoggedIn(false);
-                  router.push("/sign-in");
+                  router.replace("/sign-in");
                 }}
               >
                 <Image

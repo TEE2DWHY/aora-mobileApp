@@ -5,7 +5,11 @@ const VideoCard = ({ avatar, header, subHeader, dropdown, content }) => {
   return (
     <ScrollView className="w-full mt-5">
       <View className="flex flex-row items-center justify-between">
-        <Image source={avatar} className="w-12 h-12 mr-2" />
+        <Image
+          source={avatar}
+          className="w-12 h-12 mr-2"
+          resizeMode="contain"
+        />
         <View className="flex-1">
           <Text
             className="text-white font-semibold"

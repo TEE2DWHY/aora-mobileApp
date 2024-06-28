@@ -38,8 +38,9 @@ const Search = () => {
     {
       id: 2,
       avatar: image.avatar,
-      header: "Woman walks down a Tokyo Restaurant",
+      header: "Man Test The Ability Of Ai In Todays World",
       subHeader: "jsmastery",
+      content: images.virtual,
     },
   ];
 
@@ -63,7 +64,7 @@ const Search = () => {
               header={item.header}
               subHeader={item.subHeader}
               dropdown={icons.menu}
-              content={images.videoOne}
+              content={item.content}
             />
           </>
         )}

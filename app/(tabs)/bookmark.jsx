@@ -41,7 +41,7 @@ const Bookmark = () => {
                 header={
                   "The camera follows behind a white vintage SUV with a black roof rack as it speeds up a steep dirt road surrounded by pine trees on a steep mountain slope, "
                 }
-                subHeader={"johnson"}
+                subHeader={"jade"}
                 dropdown={icons.menu}
                 content={images.camera}
               />

@@ -27,7 +27,7 @@ const Profile = () => {
                 <Image
                   source={icons.logout}
                   resizeMode="contain"
-                  className="absolute right-9 mt-8 w-6 h-6"
+                  className="absolute right-2 mt-8 w-6 h-6"
                 />
               </TouchableOpacity>
 
@@ -56,14 +56,14 @@ const Profile = () => {
                 header={
                   "Businessman Work with Laptop Computer in Office Manager Solving Problem"
                 }
-                subHeader={"jsmastery"}
+                subHeader={"Tee2dWhy"}
                 dropdown={icons.menu}
                 content={images.videoOne}
               />
               <VideoCard
                 avatar={image.avatar}
-                header={"Woman walks down a Tokyo..."}
-                subHeader={"jsmastery"}
+                header={"Dogs walks down a Tokyo House..."}
+                subHeader={"Tee2dWhy"}
                 dropdown={icons.menu}
                 content={images.videoFive}
               />

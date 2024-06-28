@@ -56,14 +56,14 @@ const Home = () => {
               header={
                 "Businessman Work with Laptop Computer in Office Manager Solving Problem"
               }
-              subHeader={"jsmastery"}
+              subHeader={"Damon"}
               dropdown={icons.menu}
               content={images.videoOne}
             />
             <VideoCard
               avatar={image.avatar}
               header={"Woman walks down a Tokyo..."}
-              subHeader={"jsmastery"}
+              subHeader={"Elena"}
               dropdown={icons.menu}
               content={images.videoFive}
             />

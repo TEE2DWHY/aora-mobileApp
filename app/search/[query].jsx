@@ -10,7 +10,6 @@ import { useLocalSearchParams } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { icons, images } from "../../constants";
 import SearchInput from "../../components/SearchInput";
-import Trending from "../../components/Trending";
 import EmptyState from "../../components/EmptyState";
 import VideoCard from "../../components/VideoCard";
 import image from "../../constants/images";
@@ -19,6 +18,22 @@ import React, { useState } from "react";
 const Search = () => {
   const { query } = useLocalSearchParams();
   const [refreshing, setRefreshing] = useState(false);
+
+  const data = [
+    {
+      id: 1,
+      avatar: image.avatar,
+      header:
+        "Businessman Work with Laptop Computer in Office Manager Solving Problem",
+      subHeader: "jsmastery",
+    },
+    {
+      id: 2,
+      avatar: image.avatar,
+      header: "Woman walks down a Tokyo Restaurant",
+      subHeader: "jsmastery",
+    },
+  ];
 
   const onRefresh = async () => {
     setRefreshing(true);
@@ -29,16 +44,23 @@ const Search = () => {
   return (
     <SafeAreaView className="h-[100%] w-[100%] bg-primary px-6">
       <FlatList // FlatLists support both horizontal and vertical scrolls unlike scroll views (scroll view does not support adding a horizontal and vertical scroll view)
-        data={[{ id: 1 }, { id: 2 }, { id: 3 }]}
+        data={data.length === 0 ? [] : data}
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
-        // renderItem={({ item }) => (
-        //   <Text className="text-2xl text-white">{item.id} </Text>
-        // )}
+        renderItem={({ item }) => (
+          <>
+            <VideoCard
+              avatar={item.avatar}
+              header={item.header}
+              subHeader={item.subHeader}
+              dropdown={icons.menu}
+              content={images.videoOne}
+            />
+          </>
+        )}
         ListHeaderComponent={() => (
           <>
-            <View className="flex-row justify-between items-center border-red-700 w-[100%]"></View>
             <Text className="text-[#CDCDE0] text-base mt-4">
               Search Results
             </Text>
@@ -46,22 +68,6 @@ const Search = () => {
               {query}
             </Text>
             <SearchInput initialState={query} />
-            <VideoCard
-              avatar={image.avatar}
-              header={
-                "Businessman Work with Laptop Computer in Office Manager Solving Problem"
-              }
-              subHeader={"jsmastery"}
-              dropdown={icons.menu}
-              content={images.videoOne}
-            />
-            <VideoCard
-              avatar={image.avatar}
-              header={"Woman walks down a Tokyo..."}
-              subHeader={"jsmastery"}
-              dropdown={icons.menu}
-              content={images.videoFive}
-            />
           </>
         )}
         ListEmptyComponent={() => (

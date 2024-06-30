@@ -13,7 +13,8 @@ import { icons } from "../../constants";
 import CustomButton from "../../components/CustomButton";
 import { handleChange } from "../../utils/handleChange";
 import { Video, ResizeMode } from "expo-av";
-import * as DocumentPicker from "expo-document-picker";
+import * as DocumentPicker from "expo-document-picker"; // allows us to access from files
+import * as ImagePicker from "expo-image-picker"; // allows us to access from gallery
 import Input from "../../components/Input";
 const Create = () => {
   const [form, setForm] = useState({
@@ -24,11 +25,21 @@ const Create = () => {
   });
 
   const openPicker = async (selectType) => {
-    const result = await DocumentPicker.getDocumentAsync({
-      type:
+    // const result = await DocumentPicker.getDocumentAsync({
+    //   // allows us to access from files
+    //   type:
+    //     selectType === "image"
+    //       ? ["image/png", "image/jpg", "/images/jpeg"]
+    //       : ["video/mp4", "video/gif"],
+    // });
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes:
         selectType === "image"
-          ? ["image/png", "image/jpg"]
-          : ["video/mp4", "video/gif"],
+          ? ImagePicker.MediaTypeOptions.Images
+          : ImagePicker.MediaTypeOptions.Videos,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
     });
     if (!result.canceled) {
       if (selectType === "image") {
@@ -44,13 +55,48 @@ const Create = () => {
     }
   };
 
-  const submit = () => {
+  const submit = async () => {
     if (!form.prompt || !form.thumbnail || !form.title || !form.video) {
       return Alert.alert("Please fill in all the fields");
     } else {
-      Alert.alert(`Creating Video wit title ${form.title}`);
+      Alert.alert(`Creating video wit title:  ${form.title}`);
     }
     console.log(form);
+    // try {
+    //   const formData = new FormData();
+    //   formData.append("title", form.title);
+    //   formData.append("prompt", form.prompt);
+    //   formData.append("thumbnail", {
+    //     uri: form.thumbnail.uri,
+    //     type: form.thumbnail.mimeType,
+    //     name: form.thumbnail.name,
+    //     size: form.thumbnail.size,
+    //   });
+    //   formData.append("video", {
+    //     uri: form.video.uri,
+    //     type: form.video.mimeType,
+    //     name: form.video.name,
+    //     size: form.video.size,
+    //   });
+
+    //   const response = await axios.post(
+    //     "http://your-backend-url/api/upload",
+    //     formData,
+    //     {
+    //       headers: {
+    //         "Content-Type": "multipart/form-data",
+    //       },
+    //     }
+    //   );
+
+    //   console.log("Upload successful:", response.data);
+    //   Alert.alert("Upload successful");
+    //   console.log("Upload successful:", response.data);
+    //   Alert.alert("Upload successful");
+    // } catch (error) {
+    //   console.error("Error uploading:", error);
+    //   Alert.alert("Upload failed");
+    // }
   };
 
   return (

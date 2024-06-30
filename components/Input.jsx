@@ -9,7 +9,7 @@ const Input = ({ label, placeholder, value, type, onChange, keyboardType }) => {
       </Text>
       <TextInput
         placeholder={placeholder}
-        className={`p-4 bg-[#1E1E2D] rounded-xl text-white font-pbold w-full ${
+        className={`p-4 bg-[#1E1E2D] rounded-xl text-white font-pbold  ${
           value ? "border-yellow-500 border-2" : "border-transparent border-0"
         }`}
         secureTextEntry={type === "password"}

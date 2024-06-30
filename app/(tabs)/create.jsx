@@ -5,6 +5,7 @@ import {
   View,
   Image,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -33,12 +34,25 @@ const Create = () => {
       if (selectType === "image") {
         setForm({ ...form, thumbnail: result.assets[0] });
       }
+      if (selectType === "video") {
+        setForm({ ...form, video: result.assets[0] });
+      }
+    } else {
+      setTimeout(() => {
+        Alert.alert("Document Picked", JSON.stringify(result, null, 2));
+      }, 100);
     }
   };
 
   const submit = () => {
-    console.log("creating video....");
+    if (!form.prompt || !form.thumbnail || !form.title || !form.video) {
+      return Alert.alert("Please fill in all the fields");
+    } else {
+      Alert.alert(`Creating Video wit title ${form.title}`);
+    }
+    console.log(form);
   };
+
   return (
     <SafeAreaView className="h-full w-full bg-primary px-4">
       <ScrollView
@@ -53,13 +67,13 @@ const Create = () => {
           label="Video Title"
           placeholder="Give your video a catchy title..."
           value={form.title}
-          onChangeText={(value) => handleChange(form, setForm, "title", value)}
+          onChange={(value) => handleChange(form, setForm, "title", value)}
         />
         <Text className="text-[#CDCDE0] capitalize text-[16px] pb-1">
           Upload Video
         </Text>
         <TouchableOpacity
-          className="justify-center items-center bg-[#1E1E2D] h-[120px] rounded-2xl mb-6"
+          className="justify-center items-center bg-[#1E1E2D] h-[190px] rounded-2xl mb-6"
           onPress={() => openPicker("video")}
         >
           {form.video ? (
@@ -67,12 +81,12 @@ const Create = () => {
               source={{ uri: form.video.uri }}
               useNativeControls
               isLooping
-              className="rounded-2xl w-full h-64"
+              className="rounded-2xl w-full h-full bg-center"
               resizeMode={ResizeMode.COVER}
             />
           ) : (
             <View className="border-dotted border-2 border-secondary-100 py-4 px-2 rounded-xl">
-              <Image source={icons.upload} className="w-7 h-7 " />
+              <Image source={icons.upload} className="w-7 h-7" />
             </View>
           )}
         </TouchableOpacity>
@@ -80,14 +94,14 @@ const Create = () => {
           ThumbNail Image
         </Text>
         <TouchableOpacity
-          className="bg-[#1E1E2D] h-[80px] rounded-2xl mb-6 flex-row items-center justify-center "
+          className="bg-[#1E1E2D] h-[130px] rounded-2xl mb-6 flex-row items-center justify-center "
           onPress={() => openPicker("image")}
         >
           {form.thumbnail ? (
             <Image
               source={form.thumbnail}
               resizeMode="cover"
-              className="w-full h-64 rounded-2xl "
+              className="w-full h-full rounded-2xl"
             />
           ) : (
             <>

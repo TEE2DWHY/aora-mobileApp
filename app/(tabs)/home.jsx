@@ -14,7 +14,7 @@ const Home = () => {
     setRefreshing(true);
     // recalls video if new videos appeared
     setRefreshing(false);
-    console.log("app refreshing is successful.");
+    console.log("web app refreshing is successful.");
   };
 
   return (

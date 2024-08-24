@@ -70,7 +70,6 @@ const Home = () => {
           </>
         )}
         ListEmptyComponent={() => (
-          // what to show if no data is passed to FlatList
           <EmptyState
             title="No Videos"
             subTitle="Be the first person to upload a video"

@@ -59,7 +59,7 @@ const Create = () => {
     if (!form.prompt || !form.thumbnail || !form.title || !form.video) {
       return Alert.alert("Please fill in all the fields");
     } else {
-      Alert.alert(`Creating video wit title:  ${form.title}`);
+      Alert.alert(`Creating videos with title:  ${form.title}`);
     }
     console.log(form);
     // try {
